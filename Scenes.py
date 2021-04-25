@@ -121,7 +121,8 @@ class BossRoom(Scene):
     print("The ruby you pocketed starts glowing")
     print("This is where I'd describe the encouter with the boss")
     print("IF I HAD ONE!")
-    # Trying out Git
+    # Now I've changed some lines
+    print("And added this line in the login branch")
 
 
 
