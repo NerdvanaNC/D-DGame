@@ -1,8 +1,16 @@
 import time
 import random
 
+# One variable to control all the pauses
+# used in the print_desc function
+default_pause = 2
+
 def separator():
-  print("-" * 50)
+  print("\n", "=" * 50, "\n")
+
+def print_desc(desc, sleepTime):
+  print(desc)
+  time.sleep(sleepTime)
 
 class Hero(object):
   def __init__(self):
@@ -11,14 +19,18 @@ class Hero(object):
     self.luck = 1
 
   def set_hero_name(self):
-    print("Enter your hero's name")
+    print_desc("Enter your hero's name", default_pause)
     confirm = False
     while confirm != True:
-      self.name = input("> ")
-      print(f"Please confirm: is {self.name} correct?")
+      self.name = input("Name > ")
+      print_desc(f"Please confirm: is {self.name} correct?", default_pause)
       if(input("Y/N > ").lower() == "y"):
         confirm = True
         break
+
+  def hero_hp_max(self):
+    self.hp = 200
+    return self.hp
 
   def damage(self, dmg):
     self.hp -= dmg
@@ -59,98 +71,82 @@ class Combat(object):
 
   def start_combat(self, hero, enemy, hero_dmg_roll, enemy_dmg_roll):
     dice = Dice()
-    print(f"The {enemy.name} faces {hero.name} and readies their weapon.")
-    print(f"{enemy.name} charges at you!")
+    print_desc(f"The {enemy.name} faces {hero.name} and readies their weapon.", default_pause)
+    print_desc(f"{enemy.name} charges at you!", default_pause)
 
-    time.sleep(1)
-    print("\n---- FIGHT ----\n")
-    time.sleep(1)
-    print("Rolling Initiative")
+    print_desc("\n---- FIGHT ----\n", default_pause)
+    print_desc("Rolling Initiative", default_pause)
     separator()
 
     enemy_initiative = dice.roll(6)
-    print(f"{enemy.name} rolled {enemy_initiative}")
+    print_desc(f"{enemy.name} rolled {enemy_initiative}", default_pause)
     time.sleep(0.5)
     hero_initiative = dice.roll(6) + hero.luck
-    print(f"{hero.name} rolled {hero_initiative}")
+    print_desc(f"{hero.name} rolled {hero_initiative}", default_pause)
     time.sleep(0.5)
     separator()
 
-    time.sleep(1)
-    print(f"Enemy has {enemy.hp} HP")
-    print(f"Hero has {hero.hp} HP")
+    print_desc(f"Enemy has {enemy.hp} HP", default_pause)
+    print_desc(f"Hero has {hero.hp} HP", default_pause)
     separator()
-    time.sleep(1)
 
     if(hero_initiative >= enemy_initiative):
-      print(f"{hero.name} goes first!")
-      time.sleep(1)
+      print_desc(f"{hero.name} goes first!", default_pause)
       while True:
-        print(f"{hero.name}'s turn!")
+        print_desc(f"{hero.name}'s turn!", default_pause)
         atk_roll = dice.roll(hero_dmg_roll)
-        print(f"{hero.name} rolls {atk_roll} damage!")
-        time.sleep(1)
+        print_desc(f"{hero.name} rolls {atk_roll} damage!", default_pause)
         enemy.damage(atk_roll)
-        print(f"Enemy has {enemy.hp} HP")
-        time.sleep(1)
+        print_desc(f"Enemy has {enemy.hp} HP", default_pause)
 
         if(enemy.dead()):
-          print(f"{enemy.name} is struck down!")
-          time.sleep(1)
+          print_desc(f"{enemy.name} is struck down!", default_pause)
           separator()
           hero.heal(3)
-          print(f"{hero.name} healed some HP. You have {hero.hp} HP.")
+          print_desc(f"{hero.name} healed some HP. You have {hero.hp} HP.", default_pause)
           separator()
-          time.sleep(1)
-          print("\n---- COMBAT END ----\n")
+          print_desc("\n---- COMBAT END ----\n", 1)
+          input("Press any key to continue > ")
           return True # win
 
         separator()
-        print(f"{enemy.name}'s turn!")
-        time.sleep(1)
+        print_desc(f"{enemy.name}'s turn!", default_pause)
         atk_roll = dice.roll(enemy_dmg_roll)
-        print(f"{enemy.name} rolls {atk_roll} damage!")
-        time.sleep(1)
+        print_desc(f"{enemy.name} rolls {atk_roll} damage!", default_pause)
         hero.damage(atk_roll)
-        print(f"{hero.name} has {hero.hp} HP")
-        time.sleep(1)
+        print_desc(f"{hero.name} has {hero.hp} HP", default_pause)
         if(hero.dead()):
-          print(f"{hero.name} is struck down!")
-          print("\n---- COMBAT END ----\n")
+          print_desc(f"{hero.name} is struck down!", default_pause)
+          print_desc("\n---- COMBAT END ----\n", 1)
+          input("Press any key to continue > ")
           return False # lose
 
     else:
-      print(f"{enemy.name} goes first!")
-      time.sleep(1)
+      print_desc(f"{enemy.name} goes first!", default_pause)
       while True:
-        print(f"{enemy.name}'s turn!")
+        print_desc(f"{enemy.name}'s turn!", default_pause)
         atk_roll = dice.roll(enemy_dmg_roll)
-        print(f"{enemy.name} rolls {atk_roll} damage!")
-        time.sleep(1)
+        print_desc(f"{enemy.name} rolls {atk_roll} damage!", default_pause)
         hero.damage(atk_roll)
-        print(f"{hero.name} has {hero.hp} HP")
-        time.sleep(1)
+        print_desc(f"{hero.name} has {hero.hp} HP", default_pause)
         if(hero.dead()):
-          print(f"{hero.name} is struck down!")
-          print("\n---- COMBAT END ----\n")
+          print_desc(f"{hero.name} is struck down!", default_pause)
+          print_desc("\n---- COMBAT END ----\n", 1)
+          input("Press any key to continue > ")
           return False # lose
 
         separator()
-        print(f"{hero.name}'s turn!")
-        time.sleep(1)
+        print_desc(f"{hero.name}'s turn!", default_pause)
         atk_roll = dice.roll(hero_dmg_roll)
-        print(f"{hero.name} rolls {atk_roll} damage!")
-        time.sleep(1)
+        print_desc(f"{hero.name} rolls {atk_roll} damage!", default_pause)
         enemy.damage(atk_roll)
-        print(f"{enemy.name} has {enemy.hp} HP")
-        time.sleep(1)
+        print_desc(f"{enemy.name} has {enemy.hp} HP", default_pause)
         if(enemy.dead()):
-          print(f"{enemy.name} is struck down!")
-          time.sleep(1)
+          print_desc(f"{enemy.name} is struck down!", default_pause)
           separator()
           hero.heal(3)
-          print(f"{hero.name} healed some HP. You have {hero.hp} HP.")
+          print_desc(f"{hero.name} healed some HP. You have {hero.hp} HP.", default_pause)
           separator()
-          time.sleep(1)
-          print("\n---- COMBAT END ----\n")
+          print_desc("\n---- COMBAT END ----\n", 1)
+          input("Press any key to continue > ")
           return True # win
