@@ -3,7 +3,7 @@ import random
 
 # One variable to control all the pauses
 # used in the print_desc function
-default_pause = 2
+default_pause = 1
 
 def separator():
   print("\n", "=" * 50, "\n")
@@ -74,7 +74,9 @@ class Combat(object):
     print_desc(f"The {enemy.name} faces {hero.name} and readies their weapon.", default_pause)
     print_desc(f"{enemy.name} charges at you!", default_pause)
 
-    print_desc("\n---- FIGHT ----\n", default_pause)
+    separator()
+    print_desc("\t      FIGHT", 0)
+    separator()
     print_desc("Rolling Initiative", default_pause)
     separator()
 
@@ -105,8 +107,10 @@ class Combat(object):
           hero.heal(3)
           print_desc(f"{hero.name} healed some HP. You have {hero.hp} HP.", default_pause)
           separator()
-          print_desc("\n---- COMBAT END ----\n", 1)
-          input("Press any key to continue > ")
+          separator()
+          print_desc("\t      COMBAT END", 0)
+          separator()
+          input("\n[PRESS ANY KEY] to continue...\n")
           return True # win
 
         separator()
@@ -117,8 +121,10 @@ class Combat(object):
         print_desc(f"{hero.name} has {hero.hp} HP", default_pause)
         if(hero.dead()):
           print_desc(f"{hero.name} is struck down!", default_pause)
-          print_desc("\n---- COMBAT END ----\n", 1)
-          input("Press any key to continue > ")
+          separator()
+          print_desc("\t      COMBAT END", 0)
+          separator()
+          input("\n[PRESS ANY KEY] to continue...\n")
           return False # lose
 
     else:
@@ -131,8 +137,10 @@ class Combat(object):
         print_desc(f"{hero.name} has {hero.hp} HP", default_pause)
         if(hero.dead()):
           print_desc(f"{hero.name} is struck down!", default_pause)
-          print_desc("\n---- COMBAT END ----\n", 1)
-          input("Press any key to continue > ")
+          separator()
+          print_desc("\t      COMBAT END", 0)
+          separator()
+          input("\n[PRESS ANY KEY] to continue...\n")
           return False # lose
 
         separator()
@@ -147,6 +155,7 @@ class Combat(object):
           hero.heal(3)
           print_desc(f"{hero.name} healed some HP. You have {hero.hp} HP.", default_pause)
           separator()
-          print_desc("\n---- COMBAT END ----\n", 1)
-          input("Press any key to continue > ")
+          print_desc("\t      COMBAT END", 0)
+          separator()
+          input("\n[PRESS ANY KEY] to continue...\n")
           return True # win
