@@ -3,7 +3,7 @@ import Entities
 
 # One variable to control all the pauses
 # used in the print_desc function
-default_pause = 0 #2
+default_pause = 2
 
 class Scene(object):
   def enter(self):

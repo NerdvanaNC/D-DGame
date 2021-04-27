@@ -3,7 +3,7 @@ import random
 
 # One variable to control all the pauses
 # used in the print_desc function
-default_pause = 0
+default_pause = 1
 
 def separator():
   print("\n", "=" * 50, "\n")
@@ -15,7 +15,7 @@ def print_desc(desc, sleepTime):
 class Hero(object):
   def __init__(self):
     self.name = None
-    self.hp = 100 #DEBUG # 15
+    self.hp = 15
     self.luck = 1
 
   def set_hero_name(self):
