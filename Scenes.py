@@ -3,7 +3,7 @@ import Entities
 
 # One variable to control all the pauses
 # used in the print_desc function
-default_pause = 2
+default_pause = 0 #2
 
 class Scene(object):
   def enter(self):
@@ -156,7 +156,7 @@ class BossRoom(Scene):
     Entities.print_desc("Having dealt with both the elite [ENEMY] and the tiny one, you make your way further into the [MOUNTAIN].", default_pause)
     Entities.print_desc("Even from afar you can feel a slight vibration in the air, every questing hair on your body is abuzz with anticipation.", default_pause)
     Entities.print_desc("You see a darkened entrance at the end of your path, and you know what lies beyond is a fight worthy of songs.", default_pause)
-    Entities.print_desc("You steel yourself, and enter.", 2)
+    Entities.print_desc("You steel yourself, and enter.", default_pause)
     input("\n[PRESS ANY KEY] to continue...\n")
     Entities.separator()
     Entities.print_desc("\t     BOSS FIGHT", 0)
@@ -168,8 +168,9 @@ class BossRoom(Scene):
     Entities.print_desc("The cacophony awakens the [DRAGON] in the [CAVERN], and it roars with all its might upon seeing a challenger.", default_pause)
     input("\n[PRESS ANY KEY] to continue...\n")
     enemy = Entities.Enemy("ELDERWYRM", 200)
+    hero.hero_hp_max()
     combat_encounter = Entities.Combat()
-    if(combat_encounter.start_combat(hero, enemy, 20, 20)):
+    if(combat_encounter.start_combat(hero, enemy, 40, 40)):
       return "game_win"
     else:
       return "death"
@@ -179,11 +180,7 @@ class BossRoom(Scene):
 class GameWin(Scene):
   def enter(self, hero):
     Entities.print_desc(f"{hero.name} is victorious!", default_pause)
-    Entities.print_desc("You've finished the game. Play again?", default_pause)
-    if(input("Y/N > ").lower() == "y"):
-      Entities.print_desc("Let's go!", default_pause)
-      return "start_game"
-    Entities.print_desc("All right. Good bye!", default_pause)
+    Entities.print_desc("You've finished the game.", default_pause)
     exit(0)
 
 
@@ -191,9 +188,4 @@ class GameWin(Scene):
 class Death(Scene):
   def enter(self, hero):
     Entities.print_desc(f"|\t{hero.name} has been vanquished. Game over.\t|", default_pause)
-    Entities.print_desc("Play again?", default_pause)
-    if(input("Y/N > ").lower() == "y"):
-      Entities.print_desc("Let's go!", default_pause)
-      return "start_game"
-    Entities.print_desc("All right. Good bye!", default_pause)
     exit(0)

@@ -15,8 +15,3 @@ class Engine(object):
       else:
         next_scene = current_scene = game_map.return_scene_obj(next_scene)
         next_scene = next_scene.enter(hero)
-
-
-
-engine = Engine()
-engine.start_game('start_game')

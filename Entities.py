@@ -3,7 +3,7 @@ import random
 
 # One variable to control all the pauses
 # used in the print_desc function
-default_pause = 1
+default_pause = 0
 
 def separator():
   print("\n", "=" * 50, "\n")
@@ -15,7 +15,7 @@ def print_desc(desc, sleepTime):
 class Hero(object):
   def __init__(self):
     self.name = None
-    self.hp = 15
+    self.hp = 100 #DEBUG # 15
     self.luck = 1
 
   def set_hero_name(self):
@@ -82,14 +82,12 @@ class Combat(object):
 
     enemy_initiative = dice.roll(6)
     print_desc(f"{enemy.name} rolled {enemy_initiative}", default_pause)
-    time.sleep(0.5)
     hero_initiative = dice.roll(6) + hero.luck
     print_desc(f"{hero.name} rolled {hero_initiative}", default_pause)
-    time.sleep(0.5)
     separator()
 
     print_desc(f"Enemy has {enemy.hp} HP", default_pause)
-    print_desc(f"Hero has {hero.hp} HP", default_pause)
+    print_desc(f"{hero.name} has {hero.hp} HP", default_pause)
     separator()
 
     if(hero_initiative >= enemy_initiative):
