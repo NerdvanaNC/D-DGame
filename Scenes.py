@@ -56,6 +56,9 @@ class CaveEntrance(Scene):
 
 class CaveLeftEncounter(Scene):
   def enter(self, hero):
+    Entities.print_desc("As you enter, you come across a small hovel, littered with refuse and piles of bones half eaten.", default_pause)
+    Entities.print_desc("You realize you've snuck up on an [ENEMY], as you step towards it, a bone beneath your foot cracks.", default_pause)
+    Entities.print_desc("You realize you've snuck up on an [ENEMY], as you step towards it, a bone beneath your foot cracks.", default_pause)
     Entities.print_desc("The hero sees an [ENEMY]!", default_pause)
     input("\n[PRESS ANY KEY] to continue...\n")
     dice = Entities.Dice()
