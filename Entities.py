@@ -71,11 +71,11 @@ class Combat(object):
 
   def start_combat(self, hero, enemy, hero_dmg_roll, enemy_dmg_roll):
     dice = Dice()
-    print_desc(f"The {enemy.name} faces {hero.name} and readies their weapon.", default_pause)
+    print_desc(f"The {enemy.name} faces {hero.name}.", default_pause)
     print_desc(f"{enemy.name} charges at you!", default_pause)
 
     separator()
-    print_desc("\t      FIGHT", 0)
+    print_desc("\t      FIGHT!", 0)
     separator()
     print_desc("Rolling Initiative", default_pause)
     separator()

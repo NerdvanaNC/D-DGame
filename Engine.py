@@ -12,6 +12,8 @@ class Engine(object):
       if(next_scene == "start_game"):
         next_scene = current_scene = game_map.return_scene_obj(next_scene)
         next_scene = next_scene.enter()
+      elif(next_scene == "restart"):
+        self.start_game("start_game")
       else:
         next_scene = current_scene = game_map.return_scene_obj(next_scene)
         next_scene = next_scene.enter(hero)

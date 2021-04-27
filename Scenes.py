@@ -159,7 +159,7 @@ class BossRoom(Scene):
     Entities.print_desc("You steel yourself, and enter.", default_pause)
     input("\n[PRESS ANY KEY] to continue...\n")
     Entities.separator()
-    Entities.print_desc("\t     BOSS FIGHT", 0)
+    Entities.print_desc("\t     BOSS FIGHT!", 0)
     Entities.separator()
     Entities.print_desc("As soon as you enter, the [RUBY] in your pocket starts heating up intensely!", default_pause)
     Entities.print_desc("With a glow so bright you barely get to shield your eyes, it [EXPLODES]!", default_pause)
@@ -179,13 +179,26 @@ class BossRoom(Scene):
 
 class GameWin(Scene):
   def enter(self, hero):
-    Entities.print_desc(f"{hero.name} is victorious!", default_pause)
-    Entities.print_desc("You've finished the game.", default_pause)
-    exit(0)
+    Entities.separator()
+    Entities.print_desc("\t     YOU WIN!", 0)
+    Entities.separator()
+    if(input("Play again? > ").lower() == "y"):
+      print("Let's go!")
+      return "restart"
+    else:
+      print("All right. Bye!")
+      exit(0)
 
 
 
 class Death(Scene):
   def enter(self, hero):
-    Entities.print_desc(f"|\t{hero.name} has been vanquished. Game over.\t|", default_pause)
-    exit(0)
+    Entities.separator()
+    Entities.print_desc("\t     GAME OVER.", 0)
+    Entities.separator()
+    if(input("Play again? > ").lower() == "y"):
+      print("Let's go!")
+      return "restart"
+    else:
+      print("All right. Bye!")
+      exit(0)
